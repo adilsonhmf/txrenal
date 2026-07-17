@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Transplante Renal — Guia Anestésico | PCI Santa Casa BH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --magenta:#BF1F70; --ink:#231F20; --muted:#6B6266;
+  --tint:#FAF2F6; --tint2:#F1F3F4; --line:#E4DBE0; --white:#fff;
+  --shadow:0 1px 2px rgba(35,31,32,.05), 0 8px 24px -12px rgba(35,31,32,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--white); color:var(--ink);
+  font-family:'IBM Plex Sans',system-ui,sans-serif; font-size:16px; line-height:1.5;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.wrap{max-width:940px;margin:0 auto;padding:0 16px}
+
+/* ---------- header ---------- */
+header{
+  position:sticky; top:0; z-index:50; background:rgba(255,255,255,.97);
+  backdrop-filter:blur(8px); border-bottom:1px solid var(--line);
+}
+.hd{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 0 10px}
+.brand h1{
+  font-family:'Spectral',Georgia,serif; font-weight:600; font-size:1.22rem;
+  letter-spacing:-.01em; line-height:1.15;
+}
+.brand p{font-size:.68rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.wt{display:flex;align-items:center;gap:8px;margin-left:auto}
+.wt label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.wt input{
+  width:92px;padding:8px 10px;border:1.5px solid var(--line);border-radius:8px;
+  font-family:'IBM Plex Mono',monospace;font-size:1.05rem;font-weight:600;
+  color:var(--magenta);text-align:right;background:var(--white);
+}
+.wt input:focus{outline:2px solid var(--magenta);outline-offset:1px;border-color:var(--magenta)}
+.wt span{font-family:'IBM Plex Mono',monospace;font-size:.85rem;color:var(--muted)}
+
+nav{display:flex;gap:6px;overflow-x:auto;padding:0 0 10px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{
+  flex:0 0 auto;padding:7px 13px;border:1px solid var(--line);background:var(--white);
+  border-radius:999px;font:inherit;font-size:.82rem;color:var(--muted);cursor:pointer;
+  white-space:nowrap;transition:background .15s,color .15s,border-color .15s;
+}
+nav button:hover{border-color:var(--magenta);color:var(--magenta)}
+nav button[aria-selected="true"]{background:var(--magenta);border-color:var(--magenta);color:#fff;font-weight:500}
+nav button:focus-visible{outline:2px solid var(--magenta);outline-offset:2px}
+
+/* ---------- sections ---------- */
+main{padding:22px 0 60px}
+section[hidden]{display:none}
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--magenta);font-weight:600;margin-bottom:6px;
+}
+h2{font-family:'Spectral',Georgia,serif;font-weight:600;font-size:1.6rem;letter-spacing:-.015em;margin-bottom:4px}
+.sub{color:var(--muted);font-size:.9rem;margin-bottom:18px}
+
+.card{background:var(--tint);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.card.plain{background:var(--tint2)}
+.card h3{font-size:.95rem;font-weight:600;color:var(--magenta);margin-bottom:9px;letter-spacing:.01em}
+.card ul{list-style:none;display:grid;gap:7px}
+.card li{padding-left:15px;position:relative;font-size:.92rem}
+.card li::before{content:"";position:absolute;left:0;top:.6em;width:5px;height:5px;border-radius:50%;background:var(--magenta);opacity:.5}
+.card li b{font-weight:600}
+.grid2{display:grid;gap:14px}
+@media(min-width:720px){.grid2{grid-template-columns:1fr 1fr}}
+
+/* ---------- dose ---------- */
+.dose{
+  background:var(--white);border:1px solid var(--line);border-radius:10px;
+  padding:12px 14px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+}
+.dose+.dose{margin-top:8px}
+.dose .nm{font-weight:600;font-size:.9rem;flex:1 1 150px}
+.dose .rule{font-family:'IBM Plex Mono',monospace;font-size:.76rem;color:var(--muted);flex:0 0 auto}
+.dose .val{
+  font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;
+  font-size:1.18rem;font-weight:600;color:var(--magenta);margin-left:auto;
+}
+.dose .val.pending{color:var(--muted);font-weight:500;font-size:.9rem}
+.flash{animation:fl .5s ease}
+@keyframes fl{0%{background:#FDE8F1}100%{background:var(--white)}}
+@media(prefers-reduced-motion:reduce){.flash{animation:none}*{transition:none!important}}
+
+/* ---------- proibido ---------- */
+.no{background:var(--ink);border-radius:12px;padding:16px 18px;margin-bottom:14px;color:#fff}
+.no h3{color:#fff;font-size:.95rem;margin-bottom:9px}
+.no h3::before{content:"⃠  ";color:#FF8FBE}
+.no ul{list-style:none;display:grid;gap:7px}
+.no li{font-size:.9rem;padding-left:15px;position:relative;color:#EFE9EC}
+.no li::before{content:"";position:absolute;left:0;top:.6em;width:5px;height:5px;border-radius:50%;background:#FF8FBE}
+.no li b{color:#fff}
+
+/* ---------- reperfusão hero ---------- */
+.hinge{border:1.5px solid var(--magenta);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.hinge .top{background:var(--magenta);color:#fff;padding:12px 18px}
+.hinge .top .k{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.hinge .top .t{font-family:'Spectral',Georgia,serif;font-size:1.22rem;font-weight:600;margin-top:1px}
+.hinge .bd{padding:16px 18px;background:var(--white)}
+.metas{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(112px,1fr))}
+.meta{background:var(--tint);border:1px solid var(--line);border-radius:9px;padding:9px 11px;text-align:center}
+.meta .l{font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600}
+.meta .v{font-family:'IBM Plex Mono',monospace;font-size:1.12rem;font-weight:600;color:var(--magenta);font-variant-numeric:tabular-nums;margin-top:2px}
+.meta .u{font-size:.62rem;color:var(--muted)}
+
+/* ---------- risco ---------- */
+.risk label{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--white);
+  border:1px solid var(--line);border-radius:9px;cursor:pointer;font-size:.9rem}
+.risk label+label{margin-top:7px}
+.risk input{width:17px;height:17px;accent-color:var(--magenta);cursor:pointer}
+.verdict{margin-top:12px;padding:13px 15px;border-radius:10px;font-size:.95rem;font-weight:600;
+  background:var(--tint2);border:1px solid var(--line)}
+.verdict.cti{background:var(--ink);color:#fff;border-color:var(--ink)}
+.verdict small{display:block;font-weight:400;font-size:.76rem;opacity:.75;margin-top:3px}
+
+/* ---------- refs ---------- */
+ol.refs{list-style:none;counter-reset:r;display:grid;gap:7px}
+ol.refs li{counter-increment:r;padding-left:30px;position:relative;font-size:.8rem;color:var(--muted);line-height:1.45}
+ol.refs li::before{content:counter(r);position:absolute;left:0;top:0;font-family:'IBM Plex Mono',monospace;
+  font-size:.72rem;font-weight:600;color:var(--magenta)}
+
+footer{border-top:1px solid var(--line);padding:18px 0 30px;font-size:.74rem;color:var(--muted)}
+footer b{color:var(--ink)}
+.note{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:9px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="hd">
+      <div class="brand">
+        <h1>Transplante Renal — Guia Anestésico</h1>
+        <p>PCI Santa Casa BH · rev. 04 · 20/03/2026</p>
+      </div>
+      <div class="wt">
+        <label for="peso">Peso</label>
+        <input id="peso" type="number" min="1" max="250" step="0.5" placeholder="—" inputmode="decimal" aria-label="Peso do paciente em quilogramas">
+        <span>kg</span>
+      </div>
+    </div>
+    <nav id="nav" role="tablist"></nav>
+  </div>
+</header>
+
+<main class="wrap" id="main"></main>
+
+<footer class="wrap">
+  <p><b>Protocolo Clínico Institucional — Anestesia em Transplante Renal.</b> Complexo Hospitalar Santa Casa BH · Bloco Cirúrgico e CDT · revisão 04, estabelecido em 20/03/2026.</p>
+  <p style="margin-top:6px">Elaboração: Marcel Souki · Márcia Rodrigues Neder Issa · Lígia Nascimento Figueiredo Amaral. Aprovação: Márcia Rodrigues Neder Issa · Magda Lourenço Fernandes.</p>
+  <p style="margin-top:6px">Este guia reproduz exclusivamente o conteúdo do PCI. Nenhuma informação foi acrescentada de outras fontes. Os valores calculados são aritmética direta sobre as doses do próprio protocolo — confira sempre contra o documento oficial.</p>
+</footer>
+
+<script>
+const F = (n,d=1)=>{const v=Math.round(n*10**d)/10**d; return v.toLocaleString('pt-BR');};
+
+/* Todas as regras abaixo transcrevem doses literais do PCI. */
+const DOSES = [
+  {sec:'reperfusao', nm:'Ringer lactato — pré-reperfusão', rule:'30 mL/kg', f:p=>F(30*p,0)+' mL'},
+  {sec:'reperfusao', nm:'Manitol 20% — antes do clampe venoso', rule:'0,5–2 g/kg', f:p=>F(.5*p,1)+'–'+F(2*p,1)+' g'},
+  {sec:'reperfusao', nm:'↳ equivalente em solução a 20%', rule:'20 g / 100 mL', f:p=>F(.5*p*5,0)+'–'+F(2*p*5,0)+' mL'},
+  {sec:'farmacos', nm:'Propofol — indução', rule:'2–3 mg/kg', f:p=>F(2*p,0)+'–'+F(3*p,0)+' mg'},
+  {sec:'farmacos', nm:'Coloides — dose máxima', rule:'15 mL/kg/dia', f:p=>F(15*p,0)+' mL/dia'},
+  {sec:'imuno', nm:'Timoglobulina — infusão contínua em 8 h', rule:'3 mg/kg', f:p=>F(3*p,1)+' mg'},
+  {sec:'imuno', nm:'↳ velocidade da bomba', rule:'total ÷ 8 h', f:p=>F(3*p/8,2)+' mg/h'},
+  {sec:'imuno', nm:'Metilprednisolona — adulto', rule:'1 g', f:()=>'1 g'},
+  {sec:'imuno', nm:'Metilprednisolona — criança', rule:'30 mg/kg', f:p=>F(30*p,0)+' mg'},
+  {sec:'imuno', nm:'Cefazolina — adulto', rule:'2 g', f:()=>'2 g'},
+  {sec:'imuno', nm:'Cefazolina — criança', rule:'100 mg/kg/24 h', f:p=>F(100*p,0)+' mg/24 h'},
+  {sec:'doador', nm:'Hidratação vigorosa', rule:'10–20 mL/kg/h', f:p=>F(10*p,0)+'–'+F(20*p,0)+' mL/h'},
+  {sec:'pediatria', nm:'Rocurônio — sequência rápida', rule:'1,2 mg/kg', f:p=>F(1.2*p,1)+' mg'},
+  {sec:'pediatria', nm:'Manitol — durante as anastomoses', rule:'0,5–2 g/kg', f:p=>F(.5*p,1)+'–'+F(2*p,1)+' g'},
+];
+
+const doseHTML = sec => DOSES.filter(d=>d.sec===sec).map((d,i)=>
+  `<div class="dose" data-dose="${sec}-${i}">
+     <span class="nm">${d.nm}</span><span class="rule">${d.rule}</span>
+     <span class="val pending" data-calc="${sec}-${i}">informe o peso</span>
+   </div>`).join('');
+
+const SECTIONS = [
+{id:'pre', tab:'Pré-anestésica', eyebrow:'Receptor · etapa 1', h2:'Avaliação pré-anestésica', sub:'Diabetes mellitus é a causa mais comum de doença renal terminal, seguido pela hipertensão arterial sistêmica.', html:`
+<div class="grid2">
+  <div class="card"><h3>Ressaltar na consulta</h3><ul>
+    <li>Antecedentes clínicos e cirúrgicos, <b>data e tipo da diálise</b></li>
+    <li>Estado cardiovascular: hipertensão, insuficiência cardíaca, angina, pericardite, anemia — e <b>tolerância à diálise</b></li>
+    <li><b>Peso seco</b> e peso antes da diálise</li>
+    <li>Diabetes, disautonomia neurovegetativa</li>
+    <li>Dificuldade potencial de intubação — <b>mais frequente nos diabéticos</b></li>
+    <li>Antecedentes transfusionais, sorologia viral, eritropoetina, vacinação anti-HBs</li>
+  </ul></div>
+  <div class="card plain"><h3>Exames para todos os candidatos</h3><ul>
+    <li>Hemograma completo</li>
+    <li>Ionograma sanguíneo — <b>particularmente potássio</b></li>
+    <li>Glicemia · coagulograma</li>
+    <li>Radiografia de tórax · eletrocardiograma · ecocardiograma</li>
+    <li>Devem guiar investigação mais detalhada conforme resultados e estado clínico</li>
+    <li><b>Intraoperatórios:</b> eritrograma e gasometria arterial</li>
+  </ul></div>
+</div>
+<div class="card"><h3>Diálise pré-operatória</h3><ul>
+  <li>Os pacientes em diálise <b>devem ser dialisados antes da cirurgia</b></li>
+  <li>Limitar a perda durante a diálise a <b>1–2 kg acima do peso seco</b></li>
+</ul></div>`},
+
+{id:'sala', tab:'Sala e monitorização', eyebrow:'Receptor · etapa 2', h2:'Sala e instalação', sub:'Da porta do centro cirúrgico até a indução.', html:`
+<div class="card"><h3>Recepção do paciente</h3><ul>
+  <li>Vindo do <b>CTI</b>: o anestesiologista se apresenta na porta do Centro Cirúrgico, recebe o caso do plantonista que transporta e conduz até a sala</li>
+  <li>Vindo do <b>preparo pré-operatório</b>: trazido pela enfermagem. Ao adentrar, conferir dados do paciente com enfermagem e equipe cirúrgica</li>
+  <li>Conferir os dados da <b>Avaliação Pré-Anestésica</b> e o <b>jejum adequado</b></li>
+  <li>Iniciar a monitorização não invasiva <b>após a equipe cirúrgica autorizar</b> o início</li>
+</ul></div>
+<div class="grid2">
+  <div class="card"><h3>Instalação</h3><ul>
+    <li>Decúbito dorsal com os <b>braços em cruz</b></li>
+    <li>Monitorização mínima: <b>cardioscopia, oximetria, PNI, capnografia e TOF</b></li>
+    <li>AVP de grosso calibre (<b>18 ou 20G</b>) + extensor duplo lúmen</li>
+    <li>Sondagem vesical de demora <b>após a indução</b></li>
+  </ul></div>
+  <div class="no"><h3>O braço da FAV</h3><ul>
+    <li>Identificar e proteger o braço com a fístula artério-venosa</li>
+    <li><b>Não puncionar acessos venosos</b></li>
+    <li><b>Não colocar oxímetro de pulso</b></li>
+    <li><b>Não medir pressão arterial</b></li>
+  </ul></div>
+</div>
+<div class="card plain"><h3>Monitorização invasiva — quando</h3><ul>
+  <li><b>PIA:</b> de acordo com a situação do paciente (cardiopatias, instabilidade hemodinâmica) ou com o porte cirúrgico (alto risco de sangramento)</li>
+  <li><b>PIA antes da indução</b> se doença cardiovascular grave — <b>FEVE &lt; 40%</b> ou <b>duplo transplante</b> — preferencialmente em artéria femoral <b>contralateral ao implante do órgão</b></li>
+  <li><b>Cateter de artéria pulmonar:</b> cardiomiopatia com disfunção do ventrículo esquerdo e hipertensão pulmonar crônica grave</li>
+  <li><b>PVC:</b> se falha de acesso vascular ou necessidade de aminas vasoativas. Punção após a indução, preferencialmente na <b>jugular interna do lado oposto ao da FAV</b></li>
+</ul></div>`},
+
+{id:'farmacos', tab:'Fármacos', eyebrow:'Receptor · etapa 3', h2:'Agentes anestésicos', sub:'Indução, manutenção e bloqueio regional.', html:`
+${doseHTML('farmacos')}
+<div class="grid2" style="margin-top:14px">
+  <div class="card"><h3>Hipnóticos e indutores</h3><ul>
+    <li><b>Propofol</b> — primeiro agente de escolha, 2–3 mg/kg. Seguro para indução e manutenção em pacientes com falência renal</li>
+    <li><b>Etomidato</b> — segunda opção, pode ser usado alternativamente ao propofol</li>
+  </ul></div>
+  <div class="card"><h3>Bloqueadores neuromusculares</h3><ul>
+    <li><b>Atracúrio / cisatracúrio</b> — primeira opção</li>
+    <li><b>Succinilcolina</b> — segunda opção. Segura se <b>K⁺ &lt; 5,5 mEq/L</b></li>
+    <li><b>Vecurônio / rocurônio</b> — terceira opção. Duração de ação prolongada na doença renal terminal</li>
+  </ul></div>
+</div>
+<div class="card plain"><h3>Anestésicos inalatórios</h3><ul>
+  <li>Todos os agentes inalatórios <b>reduzem o fluxo sanguíneo renal e a TFG</b> proporcionalmente à dose administrada</li>
+  <li><b>Sevoflurano</b> — primeira opção, considerando o mecanismo isquemia-reperfusão. A função renal não é prejudicada pelo composto A mesmo em baixo fluxo</li>
+  <li><b>Isoflurano</b> — segunda opção</li>
+  <li><b>Desflurano</b> — parece proteger a função e o tecido renal durante o pós-condicionamento isquêmico. <b>Não disponível no serviço</b></li>
+</ul></div>
+<div class="card"><h3>Opioides</h3><ul>
+  <li><b>Morfina</b> — efeito prolongado, resultante do acúmulo de metabólito ativo</li>
+  <li><b>Fentanil, alfentanil e sufentanil</b> — farmacocinética não alterada pela doença renal; metabólitos inativos, produzem poucos efeitos mesmo com acúmulo</li>
+  <li><b>Remifentanil</b> — metabolizado nos tecidos periféricos por esterases. Metabólito principal (GR090291) tem potência 1/4600 e eliminação renal</li>
+</ul></div>
+<div class="card"><h3>Bloqueio regional e anestésicos locais</h3><ul>
+  <li>Segue a regra dos pacientes sem insuficiência renal, obedecendo à <b>dose tóxica máxima</b> de cada agente</li>
+  <li><b>TAP block é a primeira opção</b>, realizado <b>antes da incisão cirúrgica</b>: 30 mL de bupivacaína 0,25% ou ropivacaína 0,5%</li>
+  <li>Alternativa: raquianestesia e peridural. A peridural associada à geral <b>não parece influenciar os resultados</b> do transplante</li>
+  <li>Contraindicações ao neuroeixo seguem a população geral, <b>com atenção à última sessão de diálise</b> quanto ao uso de heparina</li>
+  <li>A coagulopatia da uremia é primariamente <b>disfunção plaquetária corrigível por bom controle dialítico</b> — não é contraindicação à regional. Deve ser guiada por <b>ROTEM</b></li>
+</ul></div>
+<div class="no"><h3>Não usar</h3><ul>
+  <li><b>Meperidina</b> — contraindicada. Causa convulsões pelo acúmulo de normeperidina</li>
+  <li><b>Enflurano</b> — contraindicado. Não disponível no serviço</li>
+</ul></div>`},
+
+{id:'volume', tab:'Volume', eyebrow:'Receptor · etapa 4', h2:'Reposição volêmica', sub:'Cristaloides são normalmente suficientes para a manutenção volêmica durante o transplante renal — sem riscos de infecção e sem efeitos nefrotóxicos.', html:`
+<div class="card"><h3>Ringer lactato</h3><ul>
+  <li>Grandes volumes em pacientes com <b>potássio sérico &lt; 5,5 mEq/L</b> antes da cirurgia parecem <b>seguros e superiores ao NaCl 0,9%</b></li>
+  <li>Evita o risco de acidose metabólica e de hipercalemia clinicamente significante</li>
+</ul></div>
+<div class="no"><h3>NaCl 0,9% — deve ser evitado</h3><ul>
+  <li>É o cristaloide mais frequentemente administrado, pela <b>ausência de potássio</b> na sua constituição</li>
+  <li>Porém está associado a <b>acidose metabólica hiperclorêmica</b>, que teoricamente pode causar hiperpotassemia por deslocamento do potássio intracelular</li>
+  <li><b>Portanto deve ser evitado</b></li>
+</ul></div>
+<div class="card plain"><h3>Coloides</h3><ul>
+  <li>Considerar nos receptores com <b>grande déficit intravascular</b> que requerem reposição agressiva</li>
+  <li>Podem ser usados até <b>15 mL/kg/dia</b> sem efeitos deletérios na função renal dos receptores</li>
+  <li><b>O Voluven deve ser evitado</b></li>
+</ul></div>
+<div class="card"><h3>Guia</h3><ul>
+  <li>A <b>PVC pode ser útil</b> como guia do manejo intraoperatório na administração de líquidos</li>
+</ul></div>`},
+
+{id:'reperfusao', tab:'Reperfusão', eyebrow:'Receptor · o momento', h2:'Reperfusão', sub:'É primordial a manutenção de um bom estado volêmico e uma pressão de perfusão adequada.', html:`
+<div class="hinge">
+  <div class="top"><div class="k">Antes de liberar o clampe</div><div class="t">Deverá já ter sido administrado</div></div>
+  <div class="bd">${doseHTML('reperfusao')}
+    <p class="note">O manitol a 20% é administrado imediatamente antes da liberação do clampe venoso — reduz a incidência de falência renal aguda e de diálise pós-transplante.</p>
+  </div>
+</div>
+<div class="card"><h3>Metas hemodinâmicas</h3>
+  <div class="metas">
+    <div class="meta"><div class="l">PA sistólica</div><div class="v">&gt; 120</div><div class="u">mmHg</div></div>
+    <div class="meta"><div class="l">PA diastólica</div><div class="v">&gt; 85</div><div class="u">mmHg</div></div>
+    <div class="meta"><div class="l">PA média</div><div class="v">&gt; 95</div><div class="u">mmHg</div></div>
+    <div class="meta"><div class="l">PVC</div><div class="v">10–15</div><div class="u">mmHg · se monitorizada</div></div>
+    <div class="meta"><div class="l">Pressão art. pulmonar</div><div class="v">&gt; 20</div><div class="u">mmHg · se monitorizada</div></div>
+  </div>
+  <ul style="margin-top:12px">
+    <li>Em <b>hipertensos</b>: alternativamente, manter o limite de <b>25% abaixo dos valores iniciais</b></li>
+    <li>O uso de agentes vasopressores deve ser considerado <b>após a reposição volêmica</b></li>
+  </ul>
+</div>
+<div class="card plain"><h3>O que acontece na reperfusão</h3><ul>
+  <li>Variedade de alterações metabólicas e ultraestruturais celulares</li>
+  <li>Formação de radicais livres do oxigênio</li>
+  <li>Ativação do complemento e formação de metabólitos pró-inflamatórios</li>
+  <li>Ativação leucocitária</li>
+</ul></div>
+<div class="no"><h3>Diuréticos e dopamina</h3><ul>
+  <li><b>Furosemida:</b> não há indicação para diurético de alça que não seja o tratamento de hipervolemia contribuindo para disfunção cardíaca ou pulmonar. Em altas doses <b>pode até ser deletéria</b>, modificando a distribuição do fluxo sanguíneo córtico-medular</li>
+  <li><b>Dopamina:</b> não existe indicação para administração rotineira. Em baixas doses <b>não tem efeitos reno-protetores</b></li>
+</ul></div>`},
+
+{id:'imuno', tab:'Imunossupressão', eyebrow:'Receptor · etapa 5', h2:'Imunossupressão e antibioticoprofilaxia', sub:'Doses resolvidas para o peso informado.', html:`
+${doseHTML('imuno')}
+<div class="card" style="margin-top:14px"><h3>Como está escrito no protocolo</h3><ul>
+  <li><b>Timoglobulina 25 mg:</b> após indução anestésica, iniciar infusão contínua de 3 mg/kg por 8 horas</li>
+  <li><b>Metilprednisolona:</b> 1 g em adultos e 30 mg/kg em crianças</li>
+  <li><b>Cefazolina:</b> 2 g em adultos; 100 mg/kg/24 h em crianças — ou outro antibiótico indicado</li>
+</ul></div>`},
+
+{id:'posop', tab:'Pós-operatório', eyebrow:'Receptor · etapa 6', h2:'Pós-operatório', sub:'Extubação em sala de cirurgia.', html:`
+<div class="grid2">
+  <div class="card"><h3>Conduta</h3><ul>
+    <li><b>Extubação em sala de cirurgia.</b> Se necessário, reversão de bloqueadores neuromusculares com doses habituais de atropina e neostigmina, <b>guiadas pelo TOF</b></li>
+    <li><b>Analgésicos:</b> dipirona e morfina</li>
+    <li><b>Antieméticos:</b> ondansetrona, se necessário</li>
+    <li>Manutenção do volume sanguíneo com reposição <b>mililitro por mililitro da diurese</b>, com SF 0,9% ou SGI 5%</li>
+  </ul></div>
+  <div class="no"><h3>Proscrito</h3><ul>
+    <li><b>Anti-inflamatórios</b> — proscrito o uso</li>
+  </ul></div>
+</div>
+<div class="card"><h3>Destino: enfermaria ou CTI?</h3>
+  <p class="note" style="margin:0 0 10px">Definido pela equipe multidisciplinar de transplante conforme a estratificação de risco cardiovascular. Marque os fatores presentes:</p>
+  <div class="risk">
+    <label><input type="checkbox" class="rf"> Idade &gt; 50 anos</label>
+    <label><input type="checkbox" class="rf"> Diabetes mellitus</label>
+    <label><input type="checkbox" class="rf"> Evidência prévia de doença cardiovascular — história clínica e/ou achados de exames</label>
+  </div>
+  <div class="verdict" id="verdict">Baixo risco cardiovascular — nenhum fator<small>Pós-operatório em leito de enfermaria.</small></div>
+</div>`},
+
+{id:'doador', tab:'Doador vivo', eyebrow:'Doador vivo', h2:'O doador vivo', sub:'A nefrectomia videolaparoscópica vem se tornando o procedimento de escolha na captação renal para transplante intervivos, sem alterar a função do enxerto. A morbidade do doador vivo é pequena e o tipo de complicação está relacionado com a técnica cirúrgica.', html:`
+${doseHTML('doador')}
+<div class="grid2" style="margin-top:14px">
+  <div class="card"><h3>Pré-anestésica e monitorização</h3><ul>
+    <li>Avaliação de rotina. <b>Acima de 45 anos</b>: incluir exames de triagem de coronariopatia — teste ergométrico e ecocardiograma</li>
+    <li>ECG contínuo, SpO₂, PNI, capnografia, analisador de gases expirados e diurese</li>
+    <li><b>Dois acessos venosos periféricos</b> — um de bom calibre puncionado após a indução</li>
+  </ul></div>
+  <div class="card"><h3>Posicionamento</h3><ul>
+    <li>Decúbito lateral esquerdo ou direito, <b>dependendo do rim a ser retirado</b></li>
+    <li>Mesa cirúrgica <b>flexionada</b> e coxim elevando o rim</li>
+    <li>Atenção aos pontos de compressão: <b>globo ocular, nariz, membros superiores, mamas, genitália, membros inferiores</b></li>
+  </ul></div>
+</div>
+<div class="card plain"><h3>Per-operatório</h3><ul>
+  <li>Escolha dos agentes anestésicos <b>sem atividade sobre a função renal</b> — ver a aba Fármacos</li>
+  <li>Hidratação vigorosa <b>10–20 mL/kg/h</b> para manutenção de boa diurese — preferência por <b>ringer lactato aquecido</b></li>
+  <li><b>Manitol 20%</b> se necessário, segundo protocolo da nefrologia, <b>30 minutos antes da clampagem vascular</b></li>
+  <li>Pressão arterial nos níveis pré-operatórios. Se hipotensão, corrigir com volume e, caso necessário, <b>vasopressor como última alternativa</b></li>
+</ul></div>
+<div class="card"><h3>Bloqueio regional</h3><ul>
+  <li>Deve ser realizado <b>sempre que possível no procedimento aberto</b>. <b>Dispensável se videolaparoscópica</b></li>
+  <li>Primeira escolha: <b>TAP block no lado do rim a ser removido</b></li>
+  <li>Se bloqueio do neuroeixo, dar preferência à <b>peridural</b>: anestésico local combinado com morfina — melhor controle analgésico no pós-operatório</li>
+</ul></div>
+<div class="card"><h3>Pós-operatório imediato</h3><ul>
+  <li>Despertar e extubação em sala de operação, encaminhar à <b>recuperação pós-anestésica</b></li>
+  <li>Analgésicos (dipirona e morfina) e antieméticos, se necessário</li>
+  <li>Manter diurese <b>(1–2 mL/h)</b> com reposição de SF 0,9%</li>
+</ul>
+<p class="note">Transcrito exatamente como consta do PCI.</p></div>`},
+
+{id:'pediatria', tab:'Pediátrico', eyebrow:'Receptor pediátrico', h2:'O receptor pediátrico', sub:'A disfunção renal acomete profundamente a homeostase, levando a aumento na morbidade e na mortalidade — especialmente nas crianças muito pequenas.', html:`
+${doseHTML('pediatria')}
+<div class="card" style="margin-top:14px"><h3>Pré-anestésica</h3><ul>
+  <li>A condição clínica deve estar <b>estável</b> e os distúrbios hidroeletrolíticos <b>corrigidos</b></li>
+  <li>A criança pode se apresentar com <b>tempo de jejum incompleto</b></li>
+  <li>A diurese pré-transplante (anúria, poliúria) <b>orienta a reposição volêmica</b> no transoperatório</li>
+  <li>Insuficiência renal na criança: distúrbio do crescimento, alterações do intelecto e do comportamento, comprometimento cardiovascular, anemia, entre outros</li>
+</ul></div>
+<div class="grid2">
+  <div class="card"><h3>Técnica anestésica</h3><ul>
+    <li>Pré-medicação com <b>midazolam</b> pode ser utilizada</li>
+    <li><b>Estômago cheio</b> → sequência rápida. Succinilcolina na ausência de hipercalemia; alternativa: <b>rocurônio 1,2 mg/kg</b></li>
+    <li><b>Em jejum</b> → indução inalatória, intravenosa ou combinada</li>
+    <li>Regional (TAP, peridural ou caudal com anestésico local e morfina) associada à geral, na ausência de contraindicações</li>
+  </ul></div>
+  <div class="card"><h3>Escolha de fármacos</h3><ul>
+    <li>Evitar drogas com metabolização ou excreção renal</li>
+    <li>Preferir <b>eliminação órgão-independente</b>: cisatracúrio, remifentanil</li>
+    <li>Ou que não dependam exclusivamente dos rins: <b>propofol</b></li>
+    <li>Ou cujos metabólitos sejam <b>inativos</b>: midazolam, fentanil</li>
+    <li><b>Morfina</b> titulada com cautela · <b>meperidina proscrita</b></li>
+  </ul></div>
+</div>
+<div class="card plain"><h3>Monitorização e acessos</h3><ul>
+  <li>Monitorização básica <b>incluindo temperatura central</b></li>
+  <li>Acesso venoso central e pressão intra-arterial <b>devem ser evitados</b> — mas nos casos indicados em crianças pequenas devem ser puncionados sob técnica estéril</li>
+  <li>No caso de utilização do <b>cateter de hemodiálise, remover a solução heparinizada</b></li>
+</ul></div>
+<div class="hinge">
+  <div class="top"><div class="k">Reperfusão pediátrica</div><div class="t">Condições hemodinâmicas ótimas</div></div>
+  <div class="bd">
+    <p class="note" style="margin:0 0 10px">Pela possível discrepância criança–enxerto.</p>
+    <div class="metas">
+      <div class="meta"><div class="l">PVC</div><div class="v">≈ 15</div><div class="u">mmHg</div></div>
+      <div class="meta"><div class="l">PA sistólica</div><div class="v">&gt; 120</div><div class="u">mmHg</div></div>
+      <div class="meta"><div class="l">PA média</div><div class="v">65–70</div><div class="u">mmHg · acima de</div></div>
+    </div>
+    <ul style="margin-top:12px">
+      <li>Manitol <b>0,5–2 g/kg</b> durante a realização das anastomoses</li>
+      <li>Se necessário, <b>bicarbonato de sódio 8,4%</b> — <b>0,3 × peso × Base Excess</b> — junto com a remoção do clampe da aorta, para atenuar a acidose</li>
+    </ul>
+    <div class="dose" style="margin-top:10px">
+      <span class="nm">Bicarbonato de sódio 8,4%</span>
+      <span class="rule">0,3 × peso × BE</span>
+      <span class="val pending" id="bicv">informe peso e BE</span>
+    </div>
+    <label style="display:flex;align-items:center;gap:9px;margin-top:9px;font-size:.85rem;color:var(--muted)">
+      Base Excess
+      <input id="be" type="number" step="0.1" placeholder="—" inputmode="decimal"
+        style="width:80px;padding:6px 9px;border:1.5px solid var(--line);border-radius:7px;font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--magenta);text-align:right">
+      mEq/L
+    </label>
+  </div>
+</div>
+<div class="card"><h3>Técnica cirúrgica</h3><ul>
+  <li><b>Peso &gt; 20 kg:</b> similar à dos adultos. Enxerto implantado na fossa ilíaca, anastomoses na veia e artéria ilíaca comum — podendo também usar os vasos ilíacos externos nas crianças maiores</li>
+  <li><b>Peso &lt; 20 kg:</b> técnica normalmente modificada para acomodar um rim adulto. Incisão pode ser xifopúbica dependendo do tamanho do órgão, com anastomoses nos vasos ilíacos comuns ou diretamente na aorta e cava</li>
+  <li>Um <b>rim adulto pode sequestrar quantidade desproporcional de sangue e débito cardíaco</b></li>
+</ul></div>
+<div class="card plain"><h3>Pós-operatório imediato</h3><ul>
+  <li>Manutenção do volume sanguíneo com reposição <b>mililitro por mililitro da diurese</b></li>
+  <li>Encaminhamento ao <b>CTI infantil</b></li>
+</ul></div>`},
+
+{id:'refs', tab:'Referências', eyebrow:'PCI · seção 8', h2:'Referências do protocolo', sub:'As 24 referências citadas no documento, transcritas integralmente.', html:`
+<div class="card plain"><h3>Metodologia declarada no PCI</h3><ul>
+  <li>Revisão literária usando como base a literatura amplamente difundida e disponível na área de anestesiologia, artigos científicos recentes e protocolos já vigentes no serviço, adaptando as informações à realidade do Complexo Hospitalar da Santa Casa de Belo Horizonte</li>
+  <li><b>Conflitos de interesse:</b> os autores declaram não possuir conflitos de ordem pessoal, comercial, acadêmica, política ou financeira</li>
+</ul></div>
+<div class="card"><ol class="refs">
+<li>Protocoles d'Anesthésie-Reanimation — Départment d'Anesthésie-Reanimation de Bicêtre, MAPAR, 11ème edition 2007.</li>
+<li>Sarin Kapoor H, Kaur R, Kaur H. Anaesthesia for renal transplant surgery. Acta Anaesthesiol Scand 2007; 51: 1354-1367.</li>
+<li>Csete M, Glas K, em Transplant Anesthesia. Clinical Anesthesia. Barash PG, Cullen BF, Stoelting RK, Cahalan MK, Stock MC: 6th Edition 2009.</li>
+<li>Schuelle, van der Woude. Perioperative fluid management in renal transplantation: a narrative review of the literature. European Society for Organ Transplantation 2006; 19: 947-959.</li>
+<li>Malinovsky JM, Renauld G, em Anesthésie pour chirurgie urologique. Traité d'Anesthésie Générale VIII – 3 Bernard Dalens 2004.</li>
+<li>Baker J, Yost CS, Niemann CU, em Organ Transplantation. Miller's Anesthesia 6th ed. 2005.</li>
+<li>Willms CD, Dawidson IJ, Dickerman R, Drake D, Sandor ZF, Trevino G. Intraoperative Blood volume expansion induces primary function after renal transplantation: a study of 96 paired cadaver kidneys. Transplant Proc 1991; 23 (1 pt2): 1338.</li>
+<li>Othman M, Ismael A, Hammouda G. The impact of timing of maximal crystalloid hydratation on early graft function during kidney transplantation. Anesthesia-Analgesia 2010; 110: 1440-1448.</li>
+<li>O'Malley C, Frumento R, Hardy M, Benvenisty A, Brentjens T, Mercer J, Bennett-Guerrero E. A randomized, double-blind comparison of lactated ringer's solution and 0,9% NaCl during renal transplantation. Anesthesia-Analgesia 2005; 100: 1518-1524.</li>
+<li>Hadimioglu N, Saadawy I, Saglam T, Ertug Z, Dinckan A. The effect of different crystaloid solutions on acid-base balance and early kidney function after kidney transplantation. Anesthesia-Analgesia 2008; 107: 264-269.</li>
+<li>Deman A, Peeters P, Sennesael J. Hydroxyethyl starch does not impair immediate renal function in kidney transplant recipients: a retrospective, multicentre analysis. Nephrol Dial Transplant 1999; 14: 1517-1520.</li>
+<li>Andritsos MJ, Park KW. Advantages and limitations of static parameters of fluid loading. International Anesthesiology Clinics 2010; 48 (1): 1-21.</li>
+<li>Thomas MC, Mathew T, Russ G, Rao M, Moran J. Perioperative blood pressure control, delayed graft function and acute rejection after renal transplantation. Transplantation 2003; 75: 1989-1995.</li>
+<li>Marik P, Baram M, Vahid B. Does central venous pressure predict fluid responsiveness? Chest 2008; 134: 171-179.</li>
+<li>Ickx B, Cockshott ID, Barvais L, et al. Propofol infusion for induction and maintenance of anaesthesia in patients with end-stage renal disease. Br J Anaesth 1998; 81: 854-860.</li>
+<li>Kharasch ED, Frink EJ, Zager R, Bowdle TA, Artru A, Nogami WM. Assessment of Low-flow Sevoflurane and Isoflurane Effects on Renal Function Using Sensitive Markers of Tubular Toxicity. Anesthesiology 1997; 86(6): 1238-1253.</li>
+<li>Carlier M, Squifflet JP, Pirson Y, Gribomont B, Alexandre GP. Maxymal hydratation during anesthesia increases pulmonary arterial pressures and improves early function of human renal transplants. Transplantation 1982; 34: 201-204.</li>
+<li>Friedrich AD. The Controversy of "Renal-Dose Dopamine". International Anesthesiology Clinics 2001; 39(1): 127-139.</li>
+<li>Marik PE. Low-dose dopamine: a systemic review. Intensive Care Med 2002; 28: 877.</li>
+<li>Hirata ES, Baghin MF, Pereira RIC, Alves GF, Udelsmann A. Influência da técnica anestésica nas alterações hemodinâmicas no transplante renal. Estudo retrospectivo. Rev Bras Anestesiol 2009; 59 (2): 166-176.</li>
+<li>Linke CL. Anesthesia for renal transplantation. Bulletin of the New York Academy of Medicine 1980; 56(5): 458-66.</li>
+<li>Vats HS, Rayhill SC, Thomas CP. Early postnephrectomy donor renal function: Laparoscopic versus open procedure. Transplantation 2005; 79: 609-612.</li>
+<li>Cladis F, Anixter M, Lichtenstein S, Cain J, Davis PJ, em A practice of anesthesia for infants and children. 2009 Fourth edition, Chapter 29: 615-618.</li>
+<li>Gualandro DM, Fornari LS, Caramelli B, Abizaid A, Gomes BR, Tavares CAM, et al. Diretriz de Avaliação Cardiovascular Perioperatória da Sociedade Brasileira de Cardiologia – 2024. Arq Bras Cardiol. 2024;121(9):e20240590.</li>
+</ol></div>`},
+];
+
+/* ---------- render ---------- */
+const nav=document.getElementById('nav'), main=document.getElementById('main');
+SECTIONS.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.textContent=s.tab; b.role='tab'; b.setAttribute('aria-selected', i===0);
+  b.setAttribute('aria-controls',s.id);
+  b.onclick=()=>show(s.id);
+  nav.appendChild(b);
+  const el=document.createElement('section');
+  el.id=s.id; el.hidden=i!==0; el.role='tabpanel';
+  el.innerHTML=`<div class="eyebrow">${s.eyebrow}</div><h2>${s.h2}</h2><p class="sub">${s.sub}</p>${s.html}`;
+  main.appendChild(el);
+});
+function show(id){
+  SECTIONS.forEach((s,i)=>{
+    document.getElementById(s.id).hidden = s.id!==id;
+    nav.children[i].setAttribute('aria-selected', s.id===id);
+  });
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+/* ---------- peso → doses ---------- */
+const peso=document.getElementById('peso');
+function recalc(){
+  const p=parseFloat(peso.value);
+  const ok=!isNaN(p)&&p>0;
+  DOSES.forEach((d,i)=>{
+    const idx=DOSES.filter(x=>x.sec===d.sec).indexOf(d);
+    const el=document.querySelector(`[data-calc="${d.sec}-${idx}"]`);
+    if(!el) return;
+    const txt = ok ? d.f(p) : 'informe o peso';
+    if(el.textContent!==txt){
+      el.textContent=txt;
+      el.classList.toggle('pending',!ok);
+      const box=el.closest('.dose');
+      if(ok&&box){box.classList.remove('flash');void box.offsetWidth;box.classList.add('flash');}
+    }
+  });
+  bic();
+}
+function bic(){
+  const p=parseFloat(peso.value), b=parseFloat(document.getElementById('be').value);
+  const el=document.getElementById('bicv');
+  if(isNaN(p)||isNaN(b)){el.textContent='informe peso e BE';el.classList.add('pending');return;}
+  el.textContent=F(0.3*p*b,1)+' mL';
+  el.classList.remove('pending');
+}
+peso.addEventListener('input',recalc);
+document.getElementById('be').addEventListener('input',bic);
+
+/* ---------- risco cardiovascular ---------- */
+const v=document.getElementById('verdict');
+document.querySelectorAll('.rf').forEach(c=>c.addEventListener('change',()=>{
+  const n=[...document.querySelectorAll('.rf')].filter(x=>x.checked).length;
+  if(n===0){v.className='verdict';v.innerHTML='Baixo risco cardiovascular — nenhum fator<small>Pós-operatório em leito de enfermaria.</small>';}
+  else{v.className='verdict cti';v.innerHTML=`Risco intermediário ou alto — ${n} fator${n>1?'es':''}<small>Pós-operatório em leito de terapia intensiva (CTI).</small>`;}
+}));
+recalc();
+</script>
+</body>
+</html>
